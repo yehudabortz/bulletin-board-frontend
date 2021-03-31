@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+ background-color: #000028;   
+ color: #dfe0ff;
+}
+
+.container {
+    margin: auto;
+    width: 92vw;
+    max-width: 1400px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 30px;
+
+
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.363);
+    min-width: 100px;
+    min-height: 100px;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 1px;
+    width: 100%;
+    background-color: beige;
+}
