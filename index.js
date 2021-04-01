@@ -14,6 +14,7 @@ function createBulletins() {
             let newB = new Bulletin(bulletin.name, bulletin.id, bulletin.baords)
             newB.appendBulletinsToList()
         })
+        Bulletin.generateFirstLoadedBulletin()
     })
 }
 

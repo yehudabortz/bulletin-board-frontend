@@ -14,4 +14,12 @@ class Board {
             })
         })
     }
+
+    generateCardsOnPageLoad() {
+        let dropdownList = document.getElementById('dropdown-bulletin-list')
+    
+        console.log(dropdownList.options[dropdownList.selectedIndex])
+        let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
+        this.appendBoards(bulletinId)
+    }
 }

@@ -15,4 +15,10 @@ class Bulletin {
         option.className = 'item-select'
         dropdownList.appendChild(option)
     }
+
+    static generateFirstLoadedBulletin() {
+        let firstLoadedBulletinBoard = new Board
+        firstLoadedBulletinBoard.generateCardsOnPageLoad()
+    }
+    
 }
