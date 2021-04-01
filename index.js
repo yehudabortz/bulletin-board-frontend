@@ -45,7 +45,6 @@ function addDropdownOptionEventListener() {
     let select = document.getElementsByTagName('select')
     document.addEventListener('input', function (event) {
         if (event.target.type === 'select-one') {
-            console.log(event.target)
             let cardWrap = document.querySelector('#card-wrap')
             removeAllChildNodes(cardWrap)
             console.log(event.target)
@@ -64,14 +63,26 @@ function newBulletinLinkClick() {
 function submitNewBulletin() {
     let newBulletinForm = document.getElementById('new-bulletin-form')
     let bulletinName = newBulletinForm.elements["name"].value
-    console.log(newBulletinForm)
-    console.log(bulletinName)
-    formData = {
-        name: bulletinName
-    }
-    console.log(formData)
+
     newBulletinForm.reset()
-    modalHideEvent()
+    formData = { name: bulletinName }
+    let configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+      }
+    return fetch('http://localhost:3000/bulletins', configObj)
+        .then(res => res.json())
+        .then(data => {
+            let newB = new Bulletin(data.name)
+            console.log(newB)
+            newB.appendBulletinsToList()
+        })
+        .catch(error => console.log(error.message))
+    
 }
 
 function removeAllChildNodes(parent) {
