@@ -93,6 +93,7 @@ body {
     height: 100vh;
     background-color: rgba(41, 39, 39, 0.589);
     backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     background-color: saturate(80%);
 }
 
