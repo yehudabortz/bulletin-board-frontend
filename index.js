@@ -31,7 +31,6 @@ function appendBoards(id) {
             card.appendChild(title)
         })
     })
-
 }
 
 function appendBulletins() {
