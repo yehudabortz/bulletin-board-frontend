@@ -12,7 +12,13 @@ function fetchBulletinData() {
 function fetchIndividualBulletinData(id) {
     return fetch(`http://localhost:3000/bulletins/${id}`)
     .then(res => res.json())
-    .then(data => console.log(data))
+    // .then(data => console.log(data))
+}
+
+function appendBoards() {
+    let cardWrap = document.querySelector('#card-wrap')
+    
+
 }
 
 function appendBulletins() {
