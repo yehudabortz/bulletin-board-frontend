@@ -1,49 +1,57 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    appendBulletins()
+    let newBulletin = new Bulletin
+    newBulletin.appendBulletins()
     addDropdownOptionEventListener()
 })
 
 
-function fetchBulletinData() {
-    return fetch('http://localhost:3000/bulletins')
-    .then(res => res.json())
-}
-
-function fetchIndividualBulletinData(id) {
-    return fetch(`http://localhost:3000/bulletins/${id}`)
-    .then(res => res.json())
-}
-
-function appendBoards(id) {
-    let cardWrap = document.querySelector('#card-wrap')
-
-    fetchIndividualBulletinData(id).then(bulletin => {
-        bulletin.boards.forEach(board => {
-            let card = new Card(board.name, board.items)
-            card.appendCard()
-        })
-    })
-}
-
-function appendBulletins() {
-    let dropdownList = document.getElementById('dropdown-bulletin-list')
-
-    fetchBulletinData().then(bulletins => {
-        bulletins.forEach(bulletin => {
-            let option = document.createElement('option')
-            option.value = bulletin.id
-            option.innerText = bulletin.name
-            option.className = 'item-select'
-            dropdownList.appendChild(option)
-        })
-    })
-}
-
 function addDropdownOptionEventListener() {
     document.addEventListener('input', function (event) {
-        console.log(event.target.value)
-        appendBoards(event.target.value)
+        let newBoard = new Board
+        newBoard.appendBoards(event.target.value)
     });
+}
+
+class Bulletin {
+    fetchBulletinData() {
+        return fetch('http://localhost:3000/bulletins')
+        .then(res => res.json())
+    }
+
+    appendBulletins() {
+        let dropdownList = document.getElementById('dropdown-bulletin-list')
+        let newBulletin = new Bulletin
+    
+        newBulletin.fetchBulletinData().then(bulletins => {
+            bulletins.forEach(bulletin => {
+                let option = document.createElement('option')
+                option.value = bulletin.id
+                option.innerText = bulletin.name
+                option.className = 'item-select'
+                dropdownList.appendChild(option)
+            })
+        })
+    }
+
+}
+
+class Board {
+     
+    fetchBoardData(id) {
+        return fetch(`http://localhost:3000/bulletins/${id}`)
+        .then(res => res.json())
+    }
+
+    appendBoards(id) {    
+        this.fetchBoardData(id).then(bulletin => {
+            bulletin.boards.forEach(board => {
+                let card = new Card(board.name, board.items)
+                card.appendCard()
+            })
+        })
+    }
+    
+
 }
 
 class Card {
@@ -68,3 +76,4 @@ class Card {
         cardWrap.appendChild(this.createCard())
     }
 }
+
