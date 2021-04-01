@@ -44,7 +44,7 @@ body {
     background-color: beige;
 }
 
-.icon {
+.plus-icon {
     width: 20px;
 }
 
@@ -67,6 +67,7 @@ body {
 }
 
 .modal {
+    z-index: 100;
     margin: auto;
     width: 92vw;
     min-height: 300px;
@@ -84,6 +85,7 @@ body {
 }
 
 .screen-content {
+    z-index: 99;
     position: fixed;
     top: 0;
     z-index: 100;

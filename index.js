@@ -1,7 +1,8 @@
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
     let newBulletin = new Bulletin
     newBulletin.appendBulletins()
     addDropdownOptionEventListener()
+    modalPopupEvent()
 })
 
 
@@ -77,6 +78,30 @@ class Card {
     }
 }
 
-function modalPopup() {
-    let mod = document.getElementsByClassName('modal')
+function modalPopupEvent() {
+    // let mod = document.getElementsByClassName('modal')
+    let mod = document.querySelector('#new-item-modal')
+    let screenContent = document.querySelector('.screen-content')
+    let plusIcon = document.getElementsByClassName('icon-wrap')
+
+    for (let icon of plusIcon) {
+        icon.addEventListener('click', function (e) {
+            screenContent.classList.remove('hidden')
+            mod.classList.remove('hidden')
+            modalHideEvent(mod, screenContent)
+        })
+    }
+}
+
+function modalHideEvent(mod, screenContent) {
+    let exButton = document.querySelector('#new-item-modal > img')
+    exButton.addEventListener('click', function (e) {
+        mod.classList.add('hidden')
+        screenContent.classList.add('hidden')
+    })
+
+    screenContent.addEventListener('click', function (e) {
+        mod.classList.add('hidden')
+        screenContent.classList.add('hidden')
+    })
 }
