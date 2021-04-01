@@ -77,3 +77,6 @@ class Card {
     }
 }
 
+function modalPopup() {
+    let mod = document.getElementsByClassName('modal')
+}

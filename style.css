@@ -48,6 +48,19 @@ body {
     width: 20px;
 }
 
+.ex {
+    transform: rotate(45deg);    
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.width-30{
+    width: 30px;
+}
+
 .icon-wrap {
     cursor: pointer;
     padding: 5px;
@@ -62,7 +75,7 @@ body {
     border: rgba(255, 255, 255, 0.363) solid 1px;
     border-radius: 5px;
     padding: 30px;
-    background-color: white;
+    background-color: rgb(18, 14, 36);
     position: fixed;
     top: 50%;
     bottom: 50%;
