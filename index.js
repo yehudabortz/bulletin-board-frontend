@@ -25,6 +25,7 @@ class Bulletin {
         newBulletin.fetchBulletinData().then(bulletins => {
             bulletins.forEach(bulletin => {
                 let option = document.createElement('option')
+
                 option.value = bulletin.id
                 option.innerText = bulletin.name
                 option.className = 'item-select'
@@ -32,7 +33,6 @@ class Bulletin {
             })
         })
     }
-
 }
 
 class Board {
