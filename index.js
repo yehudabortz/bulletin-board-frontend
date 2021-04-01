@@ -79,11 +79,10 @@ class Card {
 }
 
 function modalPopupEvent() {
-    // let mod = document.getElementsByClassName('modal')
     let mod = document.querySelector('#new-item-modal')
     let screenContent = document.querySelector('.screen-content')
     let plusIcon = document.getElementsByClassName('icon-wrap')
-
+    
     for (let icon of plusIcon) {
         icon.addEventListener('click', function (e) {
             screenContent.classList.remove('hidden')
