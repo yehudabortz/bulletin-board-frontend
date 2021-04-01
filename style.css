@@ -52,3 +52,31 @@ body {
     cursor: pointer;
     padding: 5px;
 }
+
+.modal {
+    margin: auto;
+    width: 92vw;
+    min-height: 300px;
+    min-width: 300px;
+    max-width: 500px;
+    border: rgba(255, 255, 255, 0.363) solid 1px;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    bottom: 50%;
+    right: 0;
+    left: 0;
+}
+
+.screen-content {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(41, 39, 39, 0.589);
+    backdrop-filter: blur(3px);
+    background-color: saturate(80%);
+}
