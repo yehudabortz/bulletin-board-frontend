@@ -24,19 +24,21 @@ function modalPopup() {
     screenContent.classList.remove('hidden')
     this.classList.remove('hidden')
     modalHideEvent(this, screenContent)
+
 }
 
-function modalHideEvent(mod, screenContent) {
+function modalHideEvent(mod) {
+    let screenContent = document.querySelector('.screen-content')
     let exButton = document.querySelector('#new-item-modal > img')
-    exButton.addEventListener('click', function (e) {
-        mod.classList.add('hidden')
-        screenContent.classList.add('hidden')
-    })
 
-    screenContent.addEventListener('click', function (e) {
+    function removeModal() {
         mod.classList.add('hidden')
         screenContent.classList.add('hidden')
-    })
+    }
+
+    exButton.addEventListener('click',removeModal)
+    screenContent.addEventListener('click', removeModal)
+    document.addEventListener('submit', removeModal)
 }
 
 function addDropdownOptionEventListener() {
@@ -68,6 +70,9 @@ function submitNewBulletin() {
         name: bulletinName
     }
     console.log(formData)
+    console.log(this)
+    newBulletinForm.reset()
+    modalHideEvent()
 }
 
 function removeAllChildNodes(parent) {
