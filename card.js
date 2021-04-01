@@ -15,7 +15,7 @@ class Card {
         let screenContent = document.querySelector('.screen-content')
         
         iconWrap.className = "icon-wrap"
-        iconWrap.addEventListener('click', function (e) {
+        plusIcon.addEventListener('click', function (e) {
             screenContent.classList.remove('hidden')
             mod.classList.remove('hidden')
             modalHideEvent(mod, screenContent)
