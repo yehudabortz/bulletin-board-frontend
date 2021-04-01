@@ -93,3 +93,7 @@ body {
     backdrop-filter: blur(3px);
     background-color: saturate(80%);
 }
+
+.hidden {
+   display: none; 
+}
