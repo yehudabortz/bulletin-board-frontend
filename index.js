@@ -12,7 +12,6 @@ function fetchBulletinData() {
 function fetchIndividualBulletinData(id) {
     return fetch(`http://localhost:3000/bulletins/${id}`)
     .then(res => res.json())
-    // .then(data => console.log(data))
 }
 
 function appendBoards(id) {
@@ -20,15 +19,8 @@ function appendBoards(id) {
 
     fetchIndividualBulletinData(id).then(bulletin => {
         bulletin.boards.forEach(board => {
-            let card = document.createElement('div')
-            let title = document.createElement('h2')
-
-            title.innerText = board.name
-            title.className = 'card-title'
-            card.className = 'card'
-            console.log(card)
-            cardWrap.appendChild(card)
-            card.appendChild(title)
+            let card = new Card(board.name, board.items)
+            card.appendCard()
         })
     })
 }
@@ -52,4 +44,27 @@ function addDropdownOptionEventListener() {
         console.log(event.target.value)
         appendBoards(event.target.value)
     });
+}
+
+class Card {
+    constructor(name, items) {
+        this.name = name
+        this.items = items
+    }
+
+    createCard() {
+        let cardElement = document.createElement('div')
+        let cardTitle = document.createElement('h2')
+
+        cardTitle.innerText = this.name
+        cardTitle.className = 'card-title'
+        cardElement.className = 'card'
+        cardElement.appendChild(cardTitle)
+        return cardElement
+    }
+
+    appendCard() {
+        let cardWrap = document.querySelector('#card-wrap')
+        cardWrap.appendChild(this.createCard())
+    }
 }
