@@ -55,9 +55,10 @@
     <div class="modal hidden" id="new-bulletin-modal">
         <img class="plus-icon ex width-30" src="images/plus-icon.svg" alt="plus-icon">
         New Bulletin made here
-        <form action="">
-            <label class="label" for="name">Name</label>
-            <input class="input" type="text" name="name">
+        <form class="form" id="new-bulletin-form" onsubmit="event.preventDefault(); submitNewBulletin();">
+            
+            <label class="label">Name</label>
+            <input class="input" type="text" name="name" id="new-bulletin-input-name">
             <input type="submit" name="" id="submit-new-bulletin">
         </form>
     </div>

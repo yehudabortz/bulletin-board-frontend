@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
     addDropdownOptionEventListener()
-    newBulletinEvent()
+    newBulletinLinkClick()
 })
 
 function fetchAllBulletinData() {
@@ -53,10 +53,21 @@ function addDropdownOptionEventListener() {
     });
 }
 
-function newBulletinEvent() {
-    let newBulletinLink = document.getElementById('new-bulletin')
+function newBulletinLinkClick() {
     let newBulletinModal = document.getElementById('new-bulletin-modal')
+    let newBulletinLink = document.getElementById('new-bulletin')
     newBulletinLink.addEventListener('click', modalPopup.bind(newBulletinModal))
+}
+
+function submitNewBulletin() {
+    let newBulletinForm = document.getElementById('new-bulletin-form')
+    let bulletinName = newBulletinForm.elements["name"].value
+    console.log(newBulletinForm)
+    console.log(bulletinName)
+    formData = {
+        name: bulletinName
+    }
+    console.log(formData)
 }
 
 function removeAllChildNodes(parent) {
