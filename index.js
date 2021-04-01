@@ -15,9 +15,22 @@ function fetchIndividualBulletinData(id) {
     // .then(data => console.log(data))
 }
 
-function appendBoards() {
+function appendBoards(id) {
     let cardWrap = document.querySelector('#card-wrap')
-    
+
+    fetchIndividualBulletinData(id).then(bulletin => {
+        bulletin.boards.forEach(board => {
+            let card = document.createElement('div')
+            let title = document.createElement('h2')
+
+            title.innerText = board.name
+            title.className = 'card-title'
+            card.className = 'card'
+            console.log(card)
+            cardWrap.appendChild(card)
+            card.appendChild(title)
+        })
+    })
 
 }
 
@@ -38,6 +51,6 @@ function appendBulletins() {
 function addDropdownOptionEventListener() {
     document.addEventListener('input', function (event) {
         console.log(event.target.value)
-        fetchIndividualBulletinData(event.target.value)
+        appendBoards(event.target.value)
     });
 }
