@@ -32,7 +32,7 @@ function modalHideEvent(mod) {
     let exButton = document.querySelector('#new-item-modal > img')
 
     function removeModal() {
-        mod.classList.add('hidden')
+        if (mod) mod.classList.add('hidden')
         screenContent.classList.add('hidden')
     }
 
@@ -70,7 +70,6 @@ function submitNewBulletin() {
         name: bulletinName
     }
     console.log(formData)
-    console.log(this)
     newBulletinForm.reset()
     modalHideEvent()
 }
