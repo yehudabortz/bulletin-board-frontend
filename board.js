@@ -6,7 +6,6 @@ class Board {
     }
 
     appendBoards(id) {
-        console.log(id)
         this.fetchCurrentBulletinData(id).then(bulletin => {
             bulletin.boards.forEach(board => {
                 let card = new Card(board.name, board.items)

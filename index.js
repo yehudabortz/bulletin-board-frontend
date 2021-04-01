@@ -40,7 +40,16 @@ function modalHideEvent(mod, screenContent) {
 
 function addDropdownOptionEventListener() {
     document.addEventListener('input', function (event) {
+        let cardWrap = document.querySelector('#card-wrap')
+        removeAllChildNodes(cardWrap)
+        console.log(event.target)
         let newBoard = new Board
         newBoard.appendBoards(event.target.value)
     });
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }

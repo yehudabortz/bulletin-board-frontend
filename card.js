@@ -16,7 +16,7 @@ class Card {
 
         let itemsWrap = document.createElement('div')
         let itemsList = document.createElement('ul')
-        console.log(this.items)
+        // console.log(this.items)
 
         for (let i = 0; i < this.items.length; i++) {
             let item = this.items[i]
