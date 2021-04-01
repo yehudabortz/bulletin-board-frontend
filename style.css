@@ -43,3 +43,12 @@ body {
     width: 100%;
     background-color: beige;
 }
+
+.icon {
+    width: 20px;
+}
+
+.icon-wrap {
+    cursor: pointer;
+    padding: 5px;
+}

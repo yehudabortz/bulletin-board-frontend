@@ -1,9 +1,25 @@
-function sayHi() {
-    console.log("test")
-}
+window.addEventListener('DOMContentLoaded', (event) => {
+    console.log(event);
+    appendBulletins()
 
-function fetchData() {
+})
+
+
+function fetchBulletinData() {
     return fetch('http://localhost:3000/bulletins')
     .then(res => res.json())
-    .then(data => console.log(data))
+}
+
+// let cardWrap = document.getElementById('card-wrap')
+function appendBulletins() {
+    let dropdownList = document.getElementById('dropdown-bulletin-list')
+    fetchBulletinData().then(bulletins => {
+        bulletins.forEach(bulletin => {
+            let option = document.createElement('option')
+            option.innerText = bulletin.name
+            option.id = bulletin.id
+            console.log(option)
+            dropdownList.appendChild(option)
+        })
+    })
 }
