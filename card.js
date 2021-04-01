@@ -12,14 +12,11 @@ class Card {
         
         
         let mod = document.querySelector('#new-item-modal')
-        let screenContent = document.querySelector('.screen-content')
         
         iconWrap.className = "icon-wrap"
-        plusIcon.addEventListener('click', function (e) {
-            screenContent.classList.remove('hidden')
-            mod.classList.remove('hidden')
-            modalHideEvent(mod, screenContent)
-        })
+
+        // let mod = document.querySelector('#new-item-modal')
+        plusIcon.addEventListener('click', modalPopup.bind(mod))
 
         plusIcon.src = "images/plus-icon.svg"
         plusIcon.className = "plus-icon"
@@ -38,4 +35,12 @@ class Card {
         let cardWrap = document.querySelector('#card-wrap')
         cardWrap.appendChild(this.createCard())
     }
+}
+
+function modalPopup() {
+    let screenContent = document.querySelector('.screen-content')
+    screenContent.classList.remove('hidden')
+    console.log(this)
+    this.classList.remove('hidden')
+    modalHideEvent(this, screenContent)
 }
