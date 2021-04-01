@@ -9,6 +9,12 @@ function fetchBulletinData() {
     .then(res => res.json())
 }
 
+function fetchIndividualBulletinData(id) {
+    return fetch(`http://localhost:3000/bulletins/${id}`)
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
+
 function appendBulletins() {
     let dropdownList = document.getElementById('dropdown-bulletin-list')
 
@@ -18,7 +24,6 @@ function appendBulletins() {
             option.value = bulletin.id
             option.innerText = bulletin.name
             option.className = 'item-select'
-            option.id = bulletin.id
             dropdownList.appendChild(option)
         })
     })
@@ -26,6 +31,7 @@ function appendBulletins() {
 
 function addDropdownOptionEventListener() {
     document.addEventListener('input', function (event) {
-         console.log(event.target.value)        
+        console.log(event.target.value)
+        fetchIndividualBulletinData(event.target.value)
     });
 }
