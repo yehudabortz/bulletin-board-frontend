@@ -13,6 +13,33 @@ body {
  color: #dfe0ff;
 }
 
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
+  width: 92vw;
+  max-width: 1400px;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav-link {
+  font-size: 1.3rem;
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+
 .container {
     margin: auto;
     width: 92vw;
