@@ -17,6 +17,13 @@ function createBulletins() {
     })
 }
 
+function modalPopup() {
+    let screenContent = document.querySelector('.screen-content')
+    screenContent.classList.remove('hidden')
+    this.classList.remove('hidden')
+    modalHideEvent(this, screenContent)
+}
+
 function modalHideEvent(mod, screenContent) {
     let exButton = document.querySelector('#new-item-modal > img')
     exButton.addEventListener('click', function (e) {
