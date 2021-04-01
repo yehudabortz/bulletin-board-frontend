@@ -40,12 +40,16 @@ function modalHideEvent(mod, screenContent) {
 }
 
 function addDropdownOptionEventListener() {
+    let select = document.getElementsByTagName('select')
     document.addEventListener('input', function (event) {
-        let cardWrap = document.querySelector('#card-wrap')
-        removeAllChildNodes(cardWrap)
-        console.log(event.target)
-        let newBoard = new Board
-        newBoard.appendBoards(event.target.value)
+        if (event.target.type === 'select-one') {
+            console.log(event.target)
+            let cardWrap = document.querySelector('#card-wrap')
+            removeAllChildNodes(cardWrap)
+            console.log(event.target)
+            let newBoard = new Board
+            newBoard.appendBoards(event.target.value)
+        }
     });
 }
 
