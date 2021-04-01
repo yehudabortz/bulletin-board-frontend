@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
     addDropdownOptionEventListener()
+    newBulletinEvent()
 })
 
 function fetchAllBulletinData() {
@@ -48,8 +49,15 @@ function addDropdownOptionEventListener() {
     });
 }
 
+function newBulletinEvent() {
+    let newBulletinLink = document.getElementById('new-bulletin')
+    let newBulletinModal = document.getElementById('new-bulletin-modal')
+    newBulletinLink.addEventListener('click', modalPopup.bind(newBulletinModal))
+}
+
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
 }
+
