@@ -14,6 +14,5 @@ class Bulletin {
         option.innerText = this.name
         option.className = 'item-select'
         dropdownList.appendChild(option)
-        // this.addDropdownOptionEventListener(option)
     }
 }

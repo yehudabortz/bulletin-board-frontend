@@ -19,7 +19,6 @@ function createBulletins() {
     })
 }
 
-
 function modalPopupEvent() {
     let mod = document.querySelector('#new-item-modal')
     let screenContent = document.querySelector('.screen-content')
