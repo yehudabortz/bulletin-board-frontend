@@ -1,7 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    console.log(event);
     appendBulletins()
-
+    addDropdownOptionEventListener()
 })
 
 
@@ -10,16 +9,23 @@ function fetchBulletinData() {
     .then(res => res.json())
 }
 
-// let cardWrap = document.getElementById('card-wrap')
 function appendBulletins() {
     let dropdownList = document.getElementById('dropdown-bulletin-list')
+
     fetchBulletinData().then(bulletins => {
         bulletins.forEach(bulletin => {
             let option = document.createElement('option')
+            option.value = bulletin.id
             option.innerText = bulletin.name
+            option.className = 'item-select'
             option.id = bulletin.id
-            console.log(option)
             dropdownList.appendChild(option)
         })
     })
+}
+
+function addDropdownOptionEventListener() {
+    document.addEventListener('input', function (event) {
+         console.log(event.target.value)        
+    });
 }
