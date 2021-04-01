@@ -10,7 +10,16 @@ class Card {
         let plusIcon = document.createElement('img')
         let iconWrap = document.createElement('div')
         
+        
+        let mod = document.querySelector('#new-item-modal')
+        let screenContent = document.querySelector('.screen-content')
+        
         iconWrap.className = "icon-wrap"
+        iconWrap.addEventListener('click', function (e) {
+            screenContent.classList.remove('hidden')
+            mod.classList.remove('hidden')
+            modalHideEvent(mod, screenContent)
+        })
 
         plusIcon.src = "images/plus-icon.svg"
         plusIcon.className = "plus-icon"

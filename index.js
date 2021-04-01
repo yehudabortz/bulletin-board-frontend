@@ -1,8 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
     addDropdownOptionEventListener()
-    modalPopupEvent()
-
 })
 
 function fetchAllBulletinData() {
@@ -17,20 +15,6 @@ function createBulletins() {
             newB.appendBulletinsToList()
         })
     })
-}
-
-function modalPopupEvent() {
-    let mod = document.querySelector('#new-item-modal')
-    let screenContent = document.querySelector('.screen-content')
-    let plusIcon = document.getElementsByClassName('icon-wrap')
-
-    for (let icon of plusIcon) {
-        icon.addEventListener('click', function (e) {
-            screenContent.classList.remove('hidden')
-            mod.classList.remove('hidden')
-            modalHideEvent(mod, screenContent)
-        })
-    }
 }
 
 function modalHideEvent(mod, screenContent) {
