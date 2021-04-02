@@ -108,7 +108,7 @@ function modalPopup() {
         let cardId = event.target.id.split("-")[1]
         newItemForm.setAttribute("data-card-id", cardId)
     }
-    
+
     this.classList.remove('hidden')
     modalHideEvent(this, screenContent)
 
@@ -116,14 +116,16 @@ function modalPopup() {
 
 function modalHideEvent(mod) {
     let screenContent = document.querySelector('.screen-content')
-    let exButton = document.querySelector('#new-item-modal > img')
+    let exButtons = document.querySelectorAll('.icon.ex')
 
     function removeModal() {
         if (mod) mod.classList.add('hidden')
         screenContent.classList.add('hidden')
     }
 
-    exButton.addEventListener('click',removeModal)
+    for (let exBtn of exButtons) {
+        exBtn.addEventListener('click', removeModal)
+    }
     screenContent.addEventListener('click', removeModal)
     document.addEventListener('submit', removeModal)
 }
