@@ -52,23 +52,30 @@ class Board {
 
     static submitNewBoardItem() {
         let newItemForm = document.querySelector('#new-item-form')
-        debugger
-        // newItemForm.setAttribute("data-card-id", )
-        console.log(newItemForm)
-// this.id = event.target.closest('card').id
-        // let configObj = {
-        //     method: "DELETE",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Accept": "application/json"
-        //     },
-        // }
-        // fetch(`${apiEndPoint}/boards/${boardIdToDelete}`, configObj)
-        // .then(res => res.json())
-        // .then(data => {
-        //     let boardInstance = new Board
-        //     boardInstance.appendBoards(currentBulletin().value)
-        // })
-        // .catch(error => console.log(error.message))
+        let cardId = parseInt(newItemForm.getAttribute('data-card-id'), 10)
+        let itemTitle = newItemForm.elements['title'].value
+        let itemBody = newItemForm.elements['body'].value
+
+
+        console.log(cardId)
+        newItemForm.reset()
+        let formData = { title: itemTitle, body: itemBody, board_id: cardId}
+        let configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+    
+        fetch(`${apiEndPoint}/items`, configObj)
+        .then(res => res.json())
+            .then(data => {
+            console.log(data)
+            let boardInstance = new Board
+            boardInstance.appendBoards(currentBulletin().value)
+        })
+        .catch(error => console.log(error.message))
     }
 }
