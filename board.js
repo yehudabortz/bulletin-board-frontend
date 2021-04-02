@@ -6,7 +6,7 @@ class Board {
         }
     
     fetchCurrentBulletinData(id) {
-        return fetch(`http://localhost:3000/bulletins/${id}`)
+        return fetch(`${apiEndPoint}/bulletins/${id}`)
         .then(res => res.json())
     }
 
@@ -33,9 +33,7 @@ class Board {
     }
 
     static deleteBoard() {
-        console.log(this)
         const boardIdToDelete = parseInt(this.id.split("-")[1], 10)
-        console.log(boardIdToDelete)
         let configObj = {
             method: "DELETE",
             headers: {
@@ -43,10 +41,9 @@ class Board {
                 "Accept": "application/json"
             },
         }
-        fetch(`http://localhost:3000/boards/${boardIdToDelete}`, configObj)
+        fetch(`${apiEndPoint}/boards/${boardIdToDelete}`, configObj)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             let boardInstance = new Board
             boardInstance.appendBoards(currentBulletin().value)
         })

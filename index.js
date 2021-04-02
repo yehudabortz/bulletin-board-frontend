@@ -1,5 +1,6 @@
 const dropdownList = document.getElementById('dropdown-bulletin-list')
 const cardWrap = document.querySelector('#card-wrap')
+const apiEndPoint = 'http://localhost:3000'
 
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
@@ -13,7 +14,7 @@ function currentBulletin() {
 }
 
 function fetchAllBulletinData() {
-    return fetch('http://localhost:3000/bulletins')
+    return fetch(`${apiEndPoint}/bulletins`)
     .then(res => res.json())
 }
 
@@ -65,7 +66,7 @@ function submitNewBulletin() {
         },
         body: JSON.stringify(formData)
     }
-    
+
     if (event.target.id === "new-bulletin-form") {
         makeNewBulletinRequest(configObj)
     } else if (event.target.id === "new-board-form") {
@@ -74,10 +75,9 @@ function submitNewBulletin() {
 }
 
 function makeNewBulletinRequest(configObj) {
-    return fetch('http://localhost:3000/bulletins', configObj)
+    return fetch(`${apiEndPoint}/bulletins`, configObj)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         let bulletinInstance = new Bulletin(data.name, data.id)
         let boardInstance = new Board(data.id)
         
@@ -90,7 +90,7 @@ function makeNewBulletinRequest(configObj) {
 }
 
 function makeNewBoardRequest(configObj) {
-    return fetch('http://localhost:3000/boards', configObj)
+    return fetch(`${apiEndPoint}/boards`, configObj)
     .then(res => res.json())
         .then(data => {
         let boardInstance = new Board(data.name)
