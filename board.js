@@ -49,4 +49,26 @@ class Board {
         })
         .catch(error => console.log(error.message))
     }
+
+    static submitNewBoardItem() {
+        let newItemForm = document.querySelector('#new-item-form')
+        debugger
+        // newItemForm.setAttribute("data-card-id", )
+        console.log(newItemForm)
+// this.id = event.target.closest('card').id
+        // let configObj = {
+        //     method: "DELETE",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     },
+        // }
+        // fetch(`${apiEndPoint}/boards/${boardIdToDelete}`, configObj)
+        // .then(res => res.json())
+        // .then(data => {
+        //     let boardInstance = new Board
+        //     boardInstance.appendBoards(currentBulletin().value)
+        // })
+        // .catch(error => console.log(error.message))
+    }
 }

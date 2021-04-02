@@ -80,8 +80,6 @@ a {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 40px;
-
-
 }
 
 .card {
@@ -133,8 +131,29 @@ a {
     margin-right: -10px;
     display: flex;
     justify-content: flex-end;
+}
 
+.items-list {
+  padding: 0;
+  list-style-type: none;
+  font-weight: 100;
+}
 
+.list-item {
+  padding-bottom: 10px;
+}
+.list-item-title {
+  font-size: 1.1rem;
+  padding-bottom: 5px;
+  color: #f0f0ff;
+}
+
+.list-item-body {
+  font-size: .9rem;
+  font-weight: 300;
+  width: 23ch;
+  line-height: 1.3rem;
+  color: #bdbdd8;
 }
 
 .modal {

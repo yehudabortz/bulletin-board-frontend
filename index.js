@@ -102,6 +102,13 @@ function makeNewBoardRequest(configObj) {
 function modalPopup() {
     let screenContent = document.querySelector('.screen-content')
     screenContent.classList.remove('hidden')
+
+    if (this.id === "new-item-modal") {
+        let newItemForm = document.querySelector('#new-item-form')
+        let cardId = event.target.id.split("-")[1]
+        newItemForm.setAttribute("data-card-id", cardId)
+    }
+    
     this.classList.remove('hidden')
     modalHideEvent(this, screenContent)
 

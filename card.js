@@ -5,6 +5,8 @@ class Card {
         this.items = items
     }
 
+// CARD COMPONENT
+
     createCard() {
         let cardElement = document.createElement('div')
         let iconWrap = document.createElement('div')
@@ -18,15 +20,24 @@ class Card {
 
         let itemsWrap = document.createElement('div')
         let itemsList = document.createElement('ul')
+        itemsList.className = 'items-list'
 
 
         for (let i = 0; i < this.items.length; i++) {
             let item = this.items[i]
             let listItem = document.createElement('li')
-            listItem.className = "list-name"
-            listItem.innerText = item.title
-            itemsWrap.appendChild(listItem)
+            let listItemTitle = document.createElement('p')
+            let listItemBody = document.createElement('p')
+            listItem.className = "list-item"
+            listItemTitle.className = "list-item-title"
+            listItemBody.className = "list-item-body"
+            listItemTitle.innerText = item.title
+            listItemBody.innerText = item.body
+            listItem.append(listItemTitle)
+            listItem.append(listItemBody)
+            itemsList.append(listItem)
         }
+        itemsWrap.appendChild(itemsList)
 
 
         let mod = document.querySelector('#new-item-modal')
@@ -39,6 +50,7 @@ class Card {
         plusIcon.src = "images/plus-icon.svg"
         deleteIcon.src = "images/delete-icon.svg"
 
+        plusIcon.id = "icon-" + this.id
         plusIcon.className = "icon"
         deleteIcon.className = "icon"
 

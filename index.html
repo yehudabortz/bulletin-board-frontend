@@ -49,8 +49,9 @@
     <div class="modal hidden" id="new-item-modal">
         <img class="plus-icon ex width-30" src="images/plus-icon.svg" alt="plus-icon">
         new item made here
-        <form action="">
+        <form class="form" id="new-item-form" data-card-id="" onsubmit="event.preventDefault(); Board.submitNewBoardItem();">
             <input type="text" name="" id="">
+            <input class="btn" type="submit" name="" id="submit-new-board-item">
         </form>
     </div>
 
