@@ -49,7 +49,6 @@ class Card {
     }
 
     appendCard() {
-        let cardWrap = document.querySelector('#card-wrap')
         cardWrap.appendChild(this.createCard())
     }
 }

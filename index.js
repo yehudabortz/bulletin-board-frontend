@@ -1,5 +1,5 @@
 const dropdownList = document.getElementById('dropdown-bulletin-list')
-
+const cardWrap = document.querySelector('#card-wrap')
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
     addDropdownOptionEventListener()
@@ -49,8 +49,6 @@ function addDropdownOptionEventListener() {
         if (event.target.type === 'select-one') {
             let cardWrap = document.querySelector('#card-wrap')
             let newBoard = new Board
-
-            removeAllChildNodes(cardWrap)
             newBoard.appendBoards(event.target.value)
         }
     });
@@ -75,17 +73,24 @@ function submitNewBulletin() {
           "Accept": "application/json"
         },
         body: JSON.stringify(formData)
-      }
+    }
+    makeNewBulletinRequest(configObj)
+}
+
+function makeNewBulletinRequest(configObj) {
     return fetch('http://localhost:3000/bulletins', configObj)
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            let newB = new Bulletin(data.name, data.id)
-            newB.appendBulletinsToList()
-            newB.assignSelectOptionToNew()
+            let bulletinInstance = new Bulletin(data.name, data.id)
+            let boardInstance = new Board(data.id)
+    
+            bulletinInstance.appendBulletinsToList()
+            bulletinInstance.assignSelectOptionToNew()
+    
+            boardInstance.appendBoards(data.id)
         })
         .catch(error => console.log(error.message))
-    
 }
 
 function removeAllChildNodes(parent) {

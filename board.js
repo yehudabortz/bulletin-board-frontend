@@ -6,6 +6,7 @@ class Board {
     }
 
     appendBoards(id) {
+        removeAllChildNodes(cardWrap)
         this.fetchCurrentBulletinData(id).then(bulletin => {
             try {
                 bulletin.boards.forEach(board => {
