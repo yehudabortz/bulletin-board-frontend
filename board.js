@@ -26,7 +26,7 @@ class Board {
     }
 
     generateCardsOnPageLoad() {
-        if (dropdownList.elements) {
+        if (dropdownList.children) {
             let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
             this.appendBoards(bulletinId)
         }
