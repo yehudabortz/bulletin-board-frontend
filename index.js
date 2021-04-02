@@ -1,3 +1,5 @@
+const dropdownList = document.getElementById('dropdown-bulletin-list')
+
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
     addDropdownOptionEventListener()
@@ -46,9 +48,9 @@ function addDropdownOptionEventListener() {
     document.addEventListener('input', function (event) {
         if (event.target.type === 'select-one') {
             let cardWrap = document.querySelector('#card-wrap')
-            removeAllChildNodes(cardWrap)
-            console.log(event.target)
             let newBoard = new Board
+
+            removeAllChildNodes(cardWrap)
             newBoard.appendBoards(event.target.value)
         }
     });
@@ -77,9 +79,10 @@ function submitNewBulletin() {
     return fetch('http://localhost:3000/bulletins', configObj)
         .then(res => res.json())
         .then(data => {
-            let newB = new Bulletin(data.name)
-            console.log(newB)
+            console.log(data)
+            let newB = new Bulletin(data.name, data.id)
             newB.appendBulletinsToList()
+            newB.assignSelectOptionToNew()
         })
         .catch(error => console.log(error.message))
     

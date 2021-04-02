@@ -7,15 +7,19 @@ class Board {
 
     appendBoards(id) {
         this.fetchCurrentBulletinData(id).then(bulletin => {
-            bulletin.boards.forEach(board => {
-                let card = new Card(board.name, board.items)
-                card.appendCard()
-            })
+            try {
+                bulletin.boards.forEach(board => {
+                    let card = new Card(board.name, board.items)
+                    card.appendCard()
+                })
+            }
+            catch {
+                console.log("This bulletin does not have any cards yet.")
+            }
         })
     }
 
     generateCardsOnPageLoad() {
-        let dropdownList = document.getElementById('dropdown-bulletin-list')
         if (dropdownList.elements) {
             let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
             this.appendBoards(bulletinId)
