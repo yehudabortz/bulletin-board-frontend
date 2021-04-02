@@ -1,10 +1,16 @@
 const dropdownList = document.getElementById('dropdown-bulletin-list')
 const cardWrap = document.querySelector('#card-wrap')
+
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()
     addDropdownOptionEventListener()
     newBulletinLinkClick()
+    newBoardLinkClick()
 })
+
+function currentBulletin() {
+    return dropdownList.options[dropdownList.selectedIndex]
+}
 
 function fetchAllBulletinData() {
     return fetch('http://localhost:3000/bulletins')
@@ -19,6 +25,78 @@ function createBulletins() {
         })
         Bulletin.generateFirstLoadedBulletin()
     })
+}
+
+function addDropdownOptionEventListener() {
+    let select = document.getElementsByTagName('select')
+    document.addEventListener('input', function (event) {
+        if (event.target.type === 'select-one') {
+            let cardWrap = document.querySelector('#card-wrap')
+            let newBoard = new Board
+            newBoard.appendBoards(event.target.value)
+        }
+    });
+}
+
+function newBulletinLinkClick() {
+    let newBulletinModal = document.getElementById('new-bulletin-modal')
+    let newBulletinLink = document.getElementById('new-bulletin')
+    newBulletinLink.addEventListener('click', modalPopup.bind(newBulletinModal))
+}
+
+function newBoardLinkClick() {
+    let newBoardModal = document.getElementById('new-board-modal')
+    let newBoardLink = document.getElementById('new-board')
+    newBoardLink.addEventListener('click', modalPopup.bind(newBoardModal))
+}
+
+function submitNewBulletin() {
+    let form = event.target
+    let bulletinName = form.elements["name"].value
+    
+    form.reset()
+    try {formData = { name: bulletinName, bulletin_id: currentBulletin().value}}
+    catch {formData = { name: bulletinName}}
+    let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+    }
+    
+    if (event.target.id === "new-bulletin-form") {
+        makeNewBulletinRequest(configObj)
+    } else if (event.target.id === "new-board-form") {
+        makeNewBoardRequest(configObj)
+    }
+}
+
+function makeNewBulletinRequest(configObj) {
+    return fetch('http://localhost:3000/bulletins', configObj)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        let bulletinInstance = new Bulletin(data.name, data.id)
+        let boardInstance = new Board(data.id)
+        
+        bulletinInstance.appendBulletinsToList()
+        bulletinInstance.assignSelectOptionToNew()
+        
+        boardInstance.appendBoards(data.id)
+    })
+    .catch(error => console.log(error.message))
+}
+
+function makeNewBoardRequest(configObj) {
+    return fetch('http://localhost:3000/boards', configObj)
+    .then(res => res.json())
+        .then(data => {
+        let boardInstance = new Board(data.name)
+            boardInstance.appendBoards(currentBulletin().value)
+    })
+    .catch(error => console.log(error.message))
 }
 
 function modalPopup() {
@@ -41,56 +119,6 @@ function modalHideEvent(mod) {
     exButton.addEventListener('click',removeModal)
     screenContent.addEventListener('click', removeModal)
     document.addEventListener('submit', removeModal)
-}
-
-function addDropdownOptionEventListener() {
-    let select = document.getElementsByTagName('select')
-    document.addEventListener('input', function (event) {
-        if (event.target.type === 'select-one') {
-            let cardWrap = document.querySelector('#card-wrap')
-            let newBoard = new Board
-            newBoard.appendBoards(event.target.value)
-        }
-    });
-}
-
-function newBulletinLinkClick() {
-    let newBulletinModal = document.getElementById('new-bulletin-modal')
-    let newBulletinLink = document.getElementById('new-bulletin')
-    newBulletinLink.addEventListener('click', modalPopup.bind(newBulletinModal))
-}
-
-function submitNewBulletin() {
-    let newBulletinForm = document.getElementById('new-bulletin-form')
-    let bulletinName = newBulletinForm.elements["name"].value
-
-    newBulletinForm.reset()
-    formData = { name: bulletinName }
-    let configObj = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(formData)
-    }
-    makeNewBulletinRequest(configObj)
-}
-
-function makeNewBulletinRequest(configObj) {
-    return fetch('http://localhost:3000/bulletins', configObj)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            let bulletinInstance = new Bulletin(data.name, data.id)
-            let boardInstance = new Board(data.id)
-    
-            bulletinInstance.appendBulletinsToList()
-            bulletinInstance.assignSelectOptionToNew()
-    
-            boardInstance.appendBoards(data.id)
-        })
-        .catch(error => console.log(error.message))
 }
 
 function removeAllChildNodes(parent) {

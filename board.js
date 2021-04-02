@@ -1,4 +1,9 @@
 class Board {
+    constructor(name, id, items = []) {
+        this.name = name
+        this.id = id
+        this.items = items
+        }
     
     fetchCurrentBulletinData(id) {
         return fetch(`http://localhost:3000/bulletins/${id}`)
