@@ -1,6 +1,7 @@
 class Card {
-    constructor(name, items) {
+    constructor(name, id, items) {
         this.name = name
+        this.id = id
         this.items = items
     }
 
@@ -8,6 +9,7 @@ class Card {
         let cardElement = document.createElement('div')
         let iconWrap = document.createElement('div')
         let plusIcon = document.createElement('img')
+        let deleteIcon = document.createElement('img')
         let cardTitle = document.createElement('h2')
 
         let divider = document.createElement('div')
@@ -16,7 +18,7 @@ class Card {
 
         let itemsWrap = document.createElement('div')
         let itemsList = document.createElement('ul')
-        // console.log(this.items)
+
 
         for (let i = 0; i < this.items.length; i++) {
             let item = this.items[i]
@@ -30,16 +32,23 @@ class Card {
         let mod = document.querySelector('#new-item-modal')
         
         iconWrap.className = "icon-wrap"
-
+        
+        deleteIcon.addEventListener('click', Board.deleteBoard.bind(cardElement))
         plusIcon.addEventListener('click', modalPopup.bind(mod))
-
+        
         plusIcon.src = "images/plus-icon.svg"
-        plusIcon.className = "plus-icon"
-        iconWrap.appendChild(plusIcon)
+        deleteIcon.src = "images/delete-icon.svg"
 
+        plusIcon.className = "icon"
+        deleteIcon.className = "icon"
+
+        iconWrap.appendChild(deleteIcon)
+        iconWrap.appendChild(plusIcon)
+        
         cardTitle.innerText = this.name
         cardTitle.className = 'card-title'
         cardElement.className = 'card'
+        cardElement.id = "card-" + this.id
 
         cardElement.appendChild(iconWrap)
         cardElement.appendChild(cardTitle)
