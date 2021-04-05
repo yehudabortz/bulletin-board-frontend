@@ -21,6 +21,7 @@ body {
   margin: auto;
   padding-top: 30px;
   padding-bottom: 30px;
+  column-gap: 15px;
 }
 
 button {
@@ -119,6 +120,9 @@ a {
     cursor: pointer;
     padding: 20px;
 }
+.nav-icon {
+  width: 30px;
+}
 
 .width-30{
     width: 30px;
@@ -190,6 +194,10 @@ a {
 .hidden {
    display: none; 
 }
+.icon#delete-bulletin-icon {
+  width: 30px;
+  grid-column: 8;
+}
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -215,6 +223,7 @@ select {
     background: rgba(255, 255, 255, 0.082);
     overflow: hidden;
     border-radius: 5px;
+    grid-column: 7 / span 1;
   }
   select {
     flex: 1;

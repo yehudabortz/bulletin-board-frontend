@@ -25,6 +25,11 @@ class Board {
         })
     }
 
+    appendSingleBoard() {
+        let card = new Card(board.name, board.id, board.items)
+        card.appendCard()
+    }
+
     generateCardsOnPageLoad() {
         if (dropdownList.children) {
             let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
@@ -72,7 +77,7 @@ class Board {
         fetch(`${apiEndPoint}/items`, configObj)
         .then(res => res.json())
             .then(data => {
-            console.log(data)
+                console.log(data)
             let boardInstance = new Board
             boardInstance.appendBoards(currentBulletin().value)
         })
