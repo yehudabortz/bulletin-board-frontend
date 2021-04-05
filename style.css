@@ -230,6 +230,7 @@ select {
     padding: 0 .5em;
     color: #fff;
     cursor: pointer;
+    font-size: 1.3rem;
   }
   /* Arrow */
   .dropdown-list::after {
