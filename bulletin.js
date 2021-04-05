@@ -46,6 +46,7 @@ class Bulletin {
                     dropdownList.children[dropdownList.selectedIndex].remove()
                     removeAllChildNodes(cardWrap)
                     if (dropdownList.length > 0) {
+                        removeAllChildNodes(dropdownList)
                         createBulletins()
                     }
                 })
