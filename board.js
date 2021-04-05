@@ -17,7 +17,7 @@ class Board {
         }
     }
     
-    fetchCurrentBulletinData(id) {
+    fetchCurrentBulletinData(id = this.id) {
         return fetch(`${apiEndPoint}/bulletins/${id}`)
         .then(res => res.json())
     }

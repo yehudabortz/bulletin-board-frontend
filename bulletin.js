@@ -45,6 +45,9 @@ class Bulletin {
                 .then(() => {
                     dropdownList.children[dropdownList.selectedIndex].remove()
                     removeAllChildNodes(cardWrap)
+                    if (dropdownList.length > 0) {
+                        createBulletins()
+                    }
                 })
                 .catch(reason => console.log(reason))
         })
