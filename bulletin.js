@@ -27,5 +27,26 @@ class Bulletin {
             }
         }
     }
+
+    static deleteBulletin() {
+        let icon = document.getElementById('delete-bulletin-icon')
+        icon.addEventListener('click', function () {
+            const bulletinIdToDelete = parseInt(currentBulletin().value, 10)
+            let configObj = {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            };
+
+            fetch(`${apiEndPoint}/bulletins/${bulletinIdToDelete}`, configObj)
+                .then(res => res.json())
+                .then(() => {
+                    dropdownList.children[dropdownList.selectedIndex].remove()
+                })
+                .catch(reason => console.log(reason))
+        })
+    }
     
 }

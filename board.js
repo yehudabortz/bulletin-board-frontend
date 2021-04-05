@@ -32,8 +32,13 @@ class Board {
 
     generateCardsOnPageLoad() {
         if (dropdownList.children) {
-            let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
-            this.appendBoards(bulletinId)
+            try {
+                let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
+                this.appendBoards(bulletinId)
+            }
+            catch {
+                console.log("No Bulletins Exists Yet")
+            }
         }
     }
 

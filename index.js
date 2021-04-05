@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
     addDropdownOptionEventListener()
     newBulletinLinkClick()
     newBoardLinkClick()
+    Bulletin.deleteBulletin()
 })
 
 function currentBulletin() {
@@ -15,8 +16,8 @@ function currentBulletin() {
 }
 
 function fetchAllBulletinData() {
-    return fetch(`${apiEndPoint}/bulletins`)
-    .then(res => res.json())
+        return fetch(`${apiEndPoint}/bulletins`)
+            .then(res => res.json())
 }
 
 function createBulletins() {
