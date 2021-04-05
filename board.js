@@ -5,18 +5,29 @@ class Board {
         this.items = items
         }
     
+    generateCardsOnPageLoad() {
+        if (dropdownList.children) {
+            try {
+                let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
+                this.fetchAndAppendBoards(bulletinId)
+            }
+            catch {
+                console.log("No Bulletins Exists Yet")
+            }
+        }
+    }
+    
     fetchCurrentBulletinData(id) {
         return fetch(`${apiEndPoint}/bulletins/${id}`)
         .then(res => res.json())
     }
-
-    appendBoards(id) {
+    
+    fetchAndAppendBoards(id) {
         removeAllChildNodes(cardWrap)
         this.fetchCurrentBulletinData(id).then(bulletin => {
             try {
                 bulletin.boards.forEach(board => {
-                    let card = new Card(board.name, board.id, board.items)
-                    card.appendCard()
+                    this.appendBoard(board)
                 })
             }
             catch {
@@ -25,22 +36,16 @@ class Board {
         })
     }
 
-    appendSingleBoard() {
+    appendBoard(board = this) {
         let card = new Card(board.name, board.id, board.items)
-        card.appendCard()
+        card.appendCard(board)   
     }
 
-    generateCardsOnPageLoad() {
-        if (dropdownList.children) {
-            try {
-                let bulletinId = dropdownList.options[dropdownList.selectedIndex].value
-                this.appendBoards(bulletinId)
-            }
-            catch {
-                console.log("No Bulletins Exists Yet")
-            }
-        }
+    removeBoard(board = this) {
+        let boardElement = document.getElementById(`card-${board.id}`)
+        boardElement.remove()
     }
+
 
     static deleteBoard() {
         const boardIdToDelete = parseInt(this.id.split("-")[1], 10)
@@ -54,8 +59,8 @@ class Board {
         fetch(`${apiEndPoint}/boards/${boardIdToDelete}`, configObj)
         .then(res => res.json())
         .then(data => {
-            let boardInstance = new Board
-            boardInstance.appendBoards(currentBulletin().value)
+            let boardInstance = new Board()
+            boardInstance.removeBoard(data)
         })
         .catch(error => console.log(error.message))
     }
@@ -66,8 +71,6 @@ class Board {
         let itemTitle = newItemForm.elements['title'].value
         let itemBody = newItemForm.elements['body'].value
 
-
-        console.log(cardId)
         newItemForm.reset()
         let formData = { title: itemTitle, body: itemBody, board_id: cardId}
         let configObj = {
@@ -82,9 +85,8 @@ class Board {
         fetch(`${apiEndPoint}/items`, configObj)
         .then(res => res.json())
             .then(data => {
-                console.log(data)
             let boardInstance = new Board
-            boardInstance.appendBoards(currentBulletin().value)
+            boardInstance.fetchAndAppendBoards(currentBulletin().value)
         })
         .catch(error => console.log(error.message))
     }

@@ -36,7 +36,7 @@ function addDropdownOptionEventListener() {
         if (event.target.type === 'select-one') {
             let cardWrap = document.querySelector('#card-wrap')
             let newBoard = new Board
-            newBoard.appendBoards(event.target.value)
+            newBoard.fetchAndAppendBoards(event.target.value)
         }
     });
 }
@@ -86,7 +86,7 @@ function makeNewBulletinRequest(configObj) {
         bulletinInstance.appendBulletinsToList()
         bulletinInstance.assignSelectOptionToNew()
         
-        boardInstance.appendBoards(data.id)
+        boardInstance.fetchAndAppendBoards(data.id)
     })
     .catch(error => console.log(error.message))
 }
@@ -95,8 +95,8 @@ function makeNewBoardRequest(configObj) {
     return fetch(`${apiEndPoint}/boards`, configObj)
     .then(res => res.json())
         .then(data => {
-        let boardInstance = new Board(data.name)
-            boardInstance.appendBoards(currentBulletin().value)
+            let boardInstance = new Board(data.name, data.id)
+            boardInstance.appendBoard()
     })
     .catch(error => console.log(error.message))
 }
