@@ -26,8 +26,9 @@
                 <div class="card">
                     <div>
                         <div class="icon-wrap">
-                            <img class="icon" src="images/delete-icon.svg" alt="plus-icon">
-                            <img class="icon" src="images/plus-icon.svg" alt="plus-icon">
+                            <img class="icon" src="images/delete-icon.svg" alt="Delete Item Icon">
+                            <img class="icon" src="images/plus-icon.svg" alt="New Item Icon">
+                            <img class="icon" src="images/edit-icon.svg" alt="Edit Icon">
                         </div>
                         <h2 class="card-title">This is my title</h2>
                     </div>
@@ -56,6 +57,16 @@
             <label class="label">Body</label>
             <textarea class="input"  name="body" id="new-item-body" cols="30" rows="3"></textarea>
             <input class="btn" type="submit" name="" id="submit-new-board-item">
+        </form>
+    </div>
+
+    <div class="modal hidden" id="edit-board-title-modal">
+        <img class="icon ex width-30" src="images/plus-icon.svg" alt="plus-icon">
+        Edit Your Board
+        <form class="form" id="edit-board-title-form" data-card-id="" onsubmit="event.preventDefault(); Board.editBoardTitle();">
+            <label class="label">Title</label>
+            <input class="input" type="text" name="title" id="edit-board-title" value="yehuda">
+            <input class="btn" type="submit" name="" id="submit-edited-board-title">
         </form>
     </div>
 

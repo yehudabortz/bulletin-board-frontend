@@ -90,4 +90,12 @@ class Board {
         })
         .catch(error => console.log(error.message))
     }
+
+    static editBoardTitle() {
+        let editBoardTitleForm = document.querySelector('#edit-board-title-form')
+console.log(editBoardTitleForm)
+
+    }
+
+
 }

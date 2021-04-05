@@ -12,6 +12,7 @@ class Card {
         let iconWrap = document.createElement('div')
         let plusIcon = document.createElement('img')
         let deleteIcon = document.createElement('img')
+        let editIcon = document.createElement('img')
         let cardTitle = document.createElement('h2')
 
         let divider = document.createElement('div')
@@ -41,19 +42,25 @@ class Card {
 
 
         let mod = document.querySelector('#new-item-modal')
+        let editMod = document.querySelector('#edit-board-title-modal')
         
         iconWrap.className = "icon-wrap"
         
         deleteIcon.addEventListener('click', Board.deleteBoard.bind(cardElement))
         plusIcon.addEventListener('click', modalPopup.bind(mod))
+        editIcon.addEventListener('click', modalPopup.bind(editMod))
         
         plusIcon.src = "images/plus-icon.svg"
         deleteIcon.src = "images/delete-icon.svg"
+        editIcon.src = "images/edit-icon.svg"
 
+        editIcon.id = "edit-icon-" + this.id
         plusIcon.id = "icon-" + this.id
         plusIcon.className = "icon"
         deleteIcon.className = "icon"
+        editIcon.className = "icon"
 
+        iconWrap.appendChild(editIcon)
         iconWrap.appendChild(deleteIcon)
         iconWrap.appendChild(plusIcon)
         

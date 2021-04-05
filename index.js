@@ -105,10 +105,15 @@ function modalPopup() {
     let screenContent = document.querySelector('.screen-content')
     screenContent.classList.remove('hidden')
 
-    if (this.id === "new-item-modal") {
-        let newItemForm = document.querySelector('#new-item-form')
-        let cardId = event.target.id.split("-")[1]
-        newItemForm.setAttribute("data-card-id", cardId)
+    let idSplit = event.target.id.split("-")
+    let cardId = idSplit[idSplit.length - 1]
+    
+    if (this.id.includes("modal", 0)) {
+        let modalForm 
+        for (let tag of this.children) {
+            if (tag.tagName === "FORM") modalForm = tag
+        }
+        modalForm.setAttribute("data-card-id", cardId)
     }
 
     this.classList.remove('hidden')
