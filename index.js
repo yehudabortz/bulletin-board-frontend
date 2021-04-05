@@ -1,7 +1,7 @@
 const dropdownList = document.getElementById('dropdown-bulletin-list')
 const cardWrap = document.querySelector('#card-wrap')
-// const apiEndPoint = 'http://localhost:3000'
-const apiEndPoint = 'https://bulletin-board-backend.herokuapp.com'
+const apiEndPoint = 'http://localhost:3000'
+// const apiEndPoint = 'https://bulletin-board-backend.herokuapp.com'
 
 window.addEventListener('DOMContentLoaded', () => {
     createBulletins()

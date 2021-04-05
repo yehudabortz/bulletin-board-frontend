@@ -44,6 +44,7 @@ class Bulletin {
                 .then(res => res.json())
                 .then(() => {
                     dropdownList.children[dropdownList.selectedIndex].remove()
+                    removeAllChildNodes(cardWrap)
                 })
                 .catch(reason => console.log(reason))
         })
