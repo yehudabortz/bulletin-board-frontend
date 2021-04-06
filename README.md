@@ -23,4 +23,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-[MIT]()
+[MIT](https://github.com/yehudabortz/bulletin-board-frontend/blob/main/LICENSE)
