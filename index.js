@@ -30,10 +30,8 @@ function createBulletins() {
 }
 
 function addDropdownOptionEventListener() {
-  let select = document.getElementsByTagName("select");
   document.addEventListener("input", function (event) {
     if (event.target.type === "select-one") {
-      let cardWrap = document.querySelector("#card-wrap");
       let newBoard = new Board();
       newBoard.fetchAndAppendBoards(event.target.value);
     }
@@ -55,13 +53,14 @@ function newBoardLinkClick() {
 function submitNewBulletin() {
   let form = event.target;
   let bulletinName = form.elements["name"].value;
-
   form.reset();
+
   try {
     formData = { name: bulletinName, bulletin_id: currentBulletin().value };
   } catch {
     formData = { name: bulletinName };
   }
+
   let configObj = {
     method: "POST",
     headers: {
@@ -90,7 +89,7 @@ function makeNewBulletinRequest(configObj) {
 
       boardInstance.fetchAndAppendBoards(data.id);
     })
-    .catch((error) => console.log(error.message));
+    .catch((error) => alert(error.message));
 }
 
 function makeNewBoardRequest(configObj) {
