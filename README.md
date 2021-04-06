@@ -9,6 +9,7 @@ Bulletin Board Frontend is a vanilla JavaScript Single Page Application that int
 `git clone git@github.com:yehudabortz/bulletin-board-frontend.git`
 
 - See backend [README](https://github.com/yehudabortz/bulletin-board-backend)
+- Change `const apiEndPoint` to your desired endpoint.
 - Open `index.html` in your browser.
 
 ## Usage
