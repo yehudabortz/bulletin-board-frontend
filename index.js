@@ -116,6 +116,7 @@ function modalPopup() {
     }
     modalForm.setAttribute("data-card-id", cardId);
     fillInFormData(modalForm, cardId);
+    console.log(this);
   }
 
   this.classList.remove("hidden");
@@ -126,7 +127,11 @@ function fillInFormData(form, cardId) {
   id = parseInt(cardId, 10);
   let newBoardInstance = new Board();
   newBoardInstance.fetchResourceData("boards", cardId).then((data) => {
-    form.elements["name"].value = data.name;
+    try {
+      form.elements["name"].value = data.name;
+    } catch {
+      console.log("Unable to assign value to board.");
+    }
   });
 }
 
