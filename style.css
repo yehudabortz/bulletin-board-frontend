@@ -109,6 +109,10 @@ a {
   display: block;
   /* margin-left: auto; */
 }
+.icon:hover {
+  transform: scale(1.1);
+  transition: 150ms cubic-bezier(0.42, 0.3, 0.58, 2.4);
+}
 
 .ex {
   transform: rotate(45deg);
