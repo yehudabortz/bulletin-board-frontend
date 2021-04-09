@@ -156,3 +156,7 @@ function removeAllChildNodes(parent) {
     parent.removeChild(parent.firstChild);
   }
 }
+
+function opacityAnimateIn(element) {
+  element.animate([{ opacity: 0 }, { opacity: 1, easing: "ease-out" }], 500);
+}
