@@ -70,6 +70,12 @@ class Card {
     cardElement.appendChild(cardTitle);
     cardElement.appendChild(divider);
     cardElement.appendChild(itemsWrap);
+
+    cardElement.animate(
+      [{ opacity: 0 }, { opacity: 1, easing: "ease-out" }],
+      500
+    );
+
     return cardElement;
   }
 
