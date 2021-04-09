@@ -71,7 +71,7 @@ class Card {
     cardElement.appendChild(divider);
     cardElement.appendChild(itemsWrap);
 
-    opacityAnimateIn(cardElement);
+    opacityAnimateIn(cardElement, 500);
 
     return cardElement;
   }

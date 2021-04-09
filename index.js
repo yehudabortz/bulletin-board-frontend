@@ -105,6 +105,8 @@ function makeNewBoardRequest(configObj) {
 function modalPopup() {
   let screenContent = document.querySelector(".screen-content");
   screenContent.classList.remove("hidden");
+  opacityAnimateIn(screenContent, 100);
+  opacityAnimateIn(this, 200);
 
   let idSplit = event.target.id.split("-");
   let cardId = idSplit[idSplit.length - 1];
@@ -157,6 +159,6 @@ function removeAllChildNodes(parent) {
   }
 }
 
-function opacityAnimateIn(element) {
-  element.animate([{ opacity: 0 }, { opacity: 1, easing: "ease-out" }], 500);
+function opacityAnimateIn(element, time) {
+  element.animate([{ opacity: 0 }, { opacity: 1, easing: "ease-out" }], time);
 }
